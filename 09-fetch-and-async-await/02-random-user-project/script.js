@@ -13,11 +13,23 @@
 function fetchUser() {
   showSpinner();
   fetch('https://randomuser.me/api')
-    .then((res) => res.json())
+    .then((res) => {
+      // Following what we learned in the error handling section, we have returned to this project and now added a way to handle failed requests
+      if(!res.ok) {
+        throw new Error('Request Failed');
+      }
+      return res.json();
+    })
     .then((data) => {
       // console.log(data.results[0]);
       hideSpinner();
       displayUser(data.results[0]);
+    })
+    .catch((error) => {
+      hideSpinner();
+      document.querySelector('#user').innerHTML = `
+        <p class="text-xl text-center text-red-500 mb-5">${error}</p>
+      `;
     })
 }
 
