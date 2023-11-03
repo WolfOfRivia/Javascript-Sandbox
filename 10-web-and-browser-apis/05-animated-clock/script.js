@@ -1,3 +1,14 @@
+// Get form
+const form = document.querySelector('form');
+// Save clock style
+const clockStyle = {
+  faceColor: '',
+  borderColor: '',
+  lineColor: '',
+  largeHandsColor: '',
+  secondHandColor: ''
+}
+
 function clock() {  
   const now = new Date();
   const canvas = document.getElementById('canvas');
@@ -100,3 +111,28 @@ function clock() {
 }
 
 requestAnimationFrame(clock);
+
+console.log(clockStyle);
+function updateClockStyle(e) {
+  // switch(e.target.attribute('id'))
+  switch(e.target.id) {
+    case 'face-color':
+      clockStyle.faceColor = e.target.value;
+      break;
+    case 'border-color':
+      clockStyle.borderColor = e.target.value;
+      break;
+    case 'line-color':
+      clockStyle.lineColor = e.target.value;
+      break;
+    case 'large-hand-color':
+      clockStyle.largeHandsColor= e.target.value;
+      break;
+    case 'second-hand-color':
+      clockStyle.secondHandColor = e.target.value;
+      break;
+  }
+  console.log(clockStyle);
+}
+
+form.addEventListener('change', updateClockStyle);
