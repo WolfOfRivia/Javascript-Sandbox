@@ -2,11 +2,11 @@
 const form = document.querySelector('form');
 // Save clock style
 const clockStyle = {
-  faceColor: '',
-  borderColor: '',
-  lineColor: '',
-  largeHandsColor: '',
-  secondHandColor: ''
+  faceColor: form.querySelector('#face-color').value,
+  borderColor: form.querySelector('#border-color').value,
+  lineColor: form.querySelector('#line-color').value,
+  largeHandsColor: form.querySelector('#large-hand-color').value,
+  secondHandColor: form.querySelector('#second-hand-color').value
 }
 
 function clock() {  
@@ -21,8 +21,8 @@ function clock() {
   ctx.rotate(-Math.PI / 2); // Rotate clock -90deg to get the correct time
 
   // Set default styles
-  ctx.strokeStyle = '#000000';
-  ctx.fillStyle = '#f4f4f4';
+  ctx.strokeStyle = clockStyle.lineColor;
+  ctx.fillStyle = clockStyle.faceColor;
   ctx.lineWidth = 5;
   ctx.lineCap = 'round'; // Lines will have a rounded end
 
@@ -30,7 +30,7 @@ function clock() {
   ctx.save();
   ctx.beginPath();
   ctx.lineWidth = 14;
-  ctx.strokeStyle = '#800000'; // Only applies to the clock because it is in between the save state and restore state (Lines 19 through 21)
+  ctx.strokeStyle = clockStyle.borderColor; // Only applies to the clock because it is in between the save state and restore state (Lines 19 through 21)
   ctx.arc(0, 0, 142, 0, Math.PI * 2, true);
   ctx.stroke();
   ctx.fill();
@@ -70,7 +70,7 @@ function clock() {
   // Draw hour hand
   ctx.save();
   ctx.rotate((Math.PI / 6) * hr + (Math.PI / 360) * min + (Math.PI / 21600) * sec);
-  ctx.strokeStyle = '#800000';
+  ctx.strokeStyle = clockStyle.largeHandsColor;
   ctx.lineWidth = 14;
   ctx.beginPath();
   ctx.moveTo(0, 0);
@@ -81,7 +81,7 @@ function clock() {
   // Draw minute hand
   ctx.save();
   ctx.rotate((Math.PI / 30) * min + (Math.PI / 1800) * sec);
-  ctx.strokeStyle = '#800000';
+  ctx.strokeStyle = clockStyle.largeHandsColor;
   ctx.lineWidth = 8;
   ctx.beginPath();
   ctx.moveTo(0, 0);
@@ -92,8 +92,8 @@ function clock() {
   // Draw second hand
   ctx.save();
   ctx.rotate((sec * Math.PI / 30));
-  ctx.strokeStyle = '#FF7F50';
-  ctx.fillStyle = '#FF7F50';
+  ctx.strokeStyle = clockStyle.secondHandColor;
+  ctx.fillStyle = clockStyle.secondHandColor;
   ctx.lineWidth = 6;
   ctx.beginPath();
   ctx.moveTo(0, 0);
