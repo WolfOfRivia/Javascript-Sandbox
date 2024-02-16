@@ -1,3 +1,5 @@
+// Stacks are a data structure that work on a last in, first out basis
+
 class Stack {
   constructor() {
     this._items = [];
