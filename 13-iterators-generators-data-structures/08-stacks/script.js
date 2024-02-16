@@ -1,4 +1,13 @@
 // Stacks are a data structure that work on a last in, first out basis
+/*
+  Stack Class Methods:
+  push() - Add to top of stack
+  pop() - Remove from top of stack
+  peek() - See what's on top of the stack
+  isEmpty() - Check if stack is empty
+  length() - Check length of stack
+  clear() - DESTROY EVERYTHING!!! Lol clear the stack
+*/
 
 class Stack {
   constructor() {
